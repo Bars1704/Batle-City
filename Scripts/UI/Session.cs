@@ -7,7 +7,8 @@ using UnityEngine;
 
 public class Session
 {
-    public const string Path = "BestReplays.bst";
+   // public const string Path = "BestReplays.bst";
+    public static string Path = Application.streamingAssetsPath  + "Games.db";
     public const int ElementsInList = 10;
     int FirstDeathes;
     int SecondDeathes;
@@ -71,7 +72,7 @@ public class Session
 
     void WriteToFile(Session[] all)
     {
-        using (BinaryWriter writer = new BinaryWriter(File.Open(Path, FileMode.Create)))
+        using (BinaryWriter writer = new BinaryWriter(File.Open(Path, FileMode.OpenOrCreate)))
         {
             foreach (var s in all)
             {
@@ -88,7 +89,7 @@ public class Session
     public static Session[] ReadFromFile()
     {
         Session[] result = new Session[ElementsInList];
-        using (BinaryReader reader = new BinaryReader(File.Open(Path, FileMode.Open)))
+        using (BinaryReader reader = new BinaryReader(File.Open(Path, FileMode.OpenOrCreate)))
         {
             for(int i = 0; i < ElementsInList; i++)
             {

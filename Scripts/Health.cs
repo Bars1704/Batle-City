@@ -45,7 +45,6 @@ public class Health : MonoBehaviour
     }
     IEnumerator PlayerDeath()
     {
-        //gameObject.transform.position = new Vector3(int.MaxValue, int.MaxValue, int.MaxValue);
         var tank = gameObject.GetComponent<Tank>();
         tank.DeathCount++;
         gameObject.transform.position = tank.RespawnPoint.transform.position;
@@ -53,7 +52,7 @@ public class Health : MonoBehaviour
         tank.makeInvisible(false);
         yield return new WaitForSeconds(3);
         tank.makeInvisible(true);
-        Heal(int.MaxValue);
+        HealtValue = MaxHealth;
     }
     public void Heal(int healing)
     {

@@ -13,15 +13,12 @@ public class PauseSkript : MonoBehaviour
     {
         isPause = pause;
         menupanel.SetActive(isPause);
-        if (isPause)
-        {
-            
-            Time.timeScale = 0;
-        }
-        else
-        {
-            Time.timeScale = 1;
-        }
+        Time.timeScale = isPause ? 0 : 1;
+    }
+     void Start()
+    {
+        Time.timeScale = 1;
+        menupanel.SetActive(false);
     }
 
     public void GoToMainMenu()
@@ -45,9 +42,5 @@ public class PauseSkript : MonoBehaviour
         {
             ChangePauseStatus(true);
         }
-    }
-    private void Start()
-    {
-        menupanel.SetActive(false);
     }
 }
